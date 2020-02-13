@@ -3,11 +3,12 @@ import axios from 'axios';
 
 
 
-let apiURL = 'http://www.omdbapi.com/?apikey=45c8ca64&i=';
+
+let apiURL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=`
 
 
 export class ShowMovieComponent extends React.Component<any, any>{
-    constructor(props){
+    constructor(props:any){
         super(props);
         this.state ={
             movie: {},
@@ -41,18 +42,9 @@ export class ShowMovieComponent extends React.Component<any, any>{
         console.log(this.state.movie.Title);
       }
     
-      handleAddReview(newReview) {
-        const copyReviews = [...this.state.reviews, newReview];
-        this.setState({
-          reviews: copyReviews
-        });
-        console.log(
-          'handleAddReview added or not? Check it out:',
-          this.state.reviews
-        );
-      }
+
     
-      addDefaultSrc(event) {
+      addDefaultSrc(event:any) {
         event.target.src =
           'https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=945&q=80';
       }
@@ -82,13 +74,13 @@ export class ShowMovieComponent extends React.Component<any, any>{
                         <div className='card-action'>
                             <p>
                             Year: {this.state.movie.Year} | Rated: {' '}
-                            {this.state.movie.Rated} | Runtime: {this.state.Runtime}
+                            {this.state.movie.Rated} | Runtime: {this.state.movie.Runtime}
                             </p>
                         </div>
                         <div className='card-action'>
                             <p>
                             Genre: {this.state.movie.Genre} | imbdRating:{' '}
-                            {this.state.movie.imbdRating}
+                            {this.state.movie.imdbRating}
                             </p>
                         </div>
                         <div className='card-action'>
@@ -100,16 +92,13 @@ export class ShowMovieComponent extends React.Component<any, any>{
                         <div className='card-action'>
                             <p>Awards: {this.state.movie.Awards || 'none'}</p>
                         </div>
-                        <div className='card-action'>
-                            <p>id: {this.state.movie.imdbID || 'none'}</p>
-                        </div>
 
 
                      </div>
                     </div>
                 </div>
 
-                <h3>{this.state.movie.Title}</h3>
+             
               
               </div>
               
